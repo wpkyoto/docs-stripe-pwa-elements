@@ -1,6 +1,5 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
 import Image from 'next/image'
 import {remark} from 'remark'
 import html from 'remark-html'
@@ -17,15 +16,7 @@ const Home: NextPage = (props) => {
       </Head>
 
       <main className={styles.main}>
-        {(props as any).posts.map((post: any) => {
-          return (
-            <Link href={`/${post.slug}`} passHref>
-              <a>
-                {post.title}
-              </a>
-            </Link>
-          )
-        })}
+        <pre><code>{JSON.stringify(props, null,2)}</code></pre>
       </main>
 
       <footer className={styles.footer}>
@@ -51,22 +42,29 @@ const markdownToHtml = async (markdown: string) => {
   return result.toString()
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticPaths:GetStaticPaths = async () => {
+    const slugs = getAllPosts()
 
-  const postSlugs = getAllPosts()
-  const posts = await Promise.all(postSlugs.map(async(slug) => {
-    const post = getPostBySlug(slug, ['date', 'title', 'content',])
     return {
-      slug: Array.isArray(slug) ? slug.join('/'):slug,
-      ...post,
-      content: await markdownToHtml(post.content as any)
+        paths: slugs.map(slug => ({
+            params: {
+                slug: Array.isArray(slug) ? slug.join('/') :slug
+            }
+        })),
+        fallback: 'blocking'
     }
-  }))
-  console.log(posts)
+}
 
+export const getStaticProps: GetStaticProps = async ({params}) => {
+    console.log({params})
+    // @ts-expect-error
+    const post = getPostBySlug(params.slug, ['date', 'title', 'content'])
   return {
     props: {
-      posts
+        post: {
+            ...post,
+            content: await markdownToHtml(post.content as any)
+          }
     }
   }
 }
