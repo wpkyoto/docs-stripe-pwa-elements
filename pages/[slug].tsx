@@ -1,10 +1,10 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import {remark} from 'remark'
-import html from 'remark-html'
-import { getAllPosts, getPostBySlug } from '../libs/markdownPosts'
-import styles from '../styles/Home.module.css'
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { remark } from "remark";
+import html from "remark-html";
+import { getAllPosts, getPostBySlug } from "../libs/markdownPosts";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = (props) => {
   return (
@@ -16,7 +16,9 @@ const Home: NextPage = (props) => {
       </Head>
 
       <main className={styles.main}>
-        <pre><code>{JSON.stringify(props, null,2)}</code></pre>
+        <pre>
+          <code>{JSON.stringify(props, null, 2)}</code>
+        </pre>
       </main>
 
       <footer className={styles.footer}>
@@ -25,57 +27,57 @@ const Home: NextPage = (props) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 const markdownToHtml = async (markdown: string) => {
-  const result = await remark().use(html).process(markdown)
-  return result.toString()
-}
+  const result = await remark().use(html).process(markdown);
+  return result.toString();
+};
 
-export const getStaticPaths:GetStaticPaths = async () => {
-    const slugs = getAllPosts()
+export const getStaticPaths: GetStaticPaths = async () => {
+  const slugs = getAllPosts();
 
+  return {
+    paths: slugs
+      .filter((slug) => !Array.isArray(slug))
+      .map((slug) => ({
+        params: {
+          slug: Array.isArray(slug) ? slug[slug.length - 1] : slug,
+        },
+      })),
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  if (!params || !params.slug) {
     return {
-        paths: slugs
-        .filter(slug => !Array.isArray(slug))
-        .map(slug => ({
-            params: {
-                slug: Array.isArray(slug) ? slug[slug.length - 1] :slug
-            }
-        })),
-        fallback: 'blocking'
-    }
-}
-
-export const getStaticProps: GetStaticProps = async ({params}) => {
-    if (!params || !params.slug) {
-        return {
-            notFound: true
-        }
-    }
-    try {
-    const post = getPostBySlug(params.slug, ['date', 'title', 'content'])
+      notFound: true,
+    };
+  }
+  try {
+    const post = getPostBySlug(params.slug, ["date", "title", "content"]);
     return {
       props: {
-          post: {
-              ...post,
-              content: await markdownToHtml(post.content as any)
-            }
-      }
-    }
+        post: {
+          ...post,
+          content: await markdownToHtml(post.content as any),
+        },
+      },
+    };
   } catch (e) {
     return {
-      notFound: true
-    }
+      notFound: true,
+    };
   }
-}
+};
