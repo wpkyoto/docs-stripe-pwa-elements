@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     <IonLabel>Components</IonLabel>
                   </IonItem>
                 </Link>
-                <Link href="/blogs" passHref>
+                <Link href="/blog" passHref>
                   <IonItem>
                     <IonIcon icon={home} slot="start" />
                     <IonLabel>Blogs</IonLabel>

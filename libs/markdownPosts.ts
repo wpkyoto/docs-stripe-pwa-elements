@@ -61,6 +61,25 @@ export const getPostBySlug = (
  * @returns
  * @see https://qiita.com/KZ-taran/items/5a460a41dca9d94d21cc
  */
+ export const getBlogPosts = () => {
+  const entries = glob.sync(`${postDirPrefix}/blog/*.md`);
+  return entries
+    .map((file) => file.split(postDirPrefix).pop())
+    .map((slug) => (slug as string).replace(/\.md$/, "").split("/"));
+};
+
+export type BlogPost = {
+  title: string;
+  slug: string;
+  date: string;
+  content: string;
+}
+
+/**
+ *
+ * @returns
+ * @see https://qiita.com/KZ-taran/items/5a460a41dca9d94d21cc
+ */
 export const getAllPosts = () => {
   const entries = glob.sync(`${postDirPrefix}/**/*.md`);
   return entries
