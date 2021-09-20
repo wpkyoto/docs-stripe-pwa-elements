@@ -16,7 +16,7 @@ hljs.registerLanguage("yaml", yaml);
 hljs.registerLanguage("undefined", shell);
 
 export const useHighlightJS = () => {
-    const { pathname } = useRouter()
+  const { pathname } = useRouter();
   useEffect(() => {
     hljs.highlightAll();
     //hljs.initHighlighting.called = false

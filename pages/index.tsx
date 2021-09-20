@@ -1,11 +1,12 @@
-import type { GetStaticProps, NextPage } from "next";
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { getAllPosts, getPostBySlug } from "../libs/markdownPosts";
 import { PageLayout } from "../components/Layouts/PageLayout";
+import { getGitHubReadme } from "../libs/github/getReadme";
 import { markdownToHtml } from "../libs/markdown/converters";
 
-const Home: NextPage = (props) => {
+const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
+  props
+) => {
   return (
     <PageLayout title="stripe-element Home">
       <Head>
@@ -15,13 +16,11 @@ const Home: NextPage = (props) => {
       </Head>
 
       <main className="ion-padding">
-        {(props as any).posts.map((post: any) => {
-          return (
-            <Link href={`/${post.slug}`} passHref key={post.title}>
-              <a>{post.title}</a>
-            </Link>
-          );
-        })}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: props.text,
+          }}
+        />
       </main>
     </PageLayout>
   );
@@ -29,23 +28,14 @@ const Home: NextPage = (props) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async () => {
-  const postSlugs = getAllPosts();
-  const posts = await Promise.all(
-    postSlugs.map(async (slug) => {
-      const post = getPostBySlug(slug, ["date", "title", "content"]);
-      return {
-        slug: Array.isArray(slug) ? slug.join("/") : slug,
-        ...post,
-        content: await markdownToHtml(post.content as any),
-      };
-    })
-  );
-  console.log(posts);
+export const getStaticProps: GetStaticProps<{
+  text: string;
+}> = async () => {
+  const { text } = await getGitHubReadme();
 
   return {
     props: {
-      posts,
+      text: await markdownToHtml(text),
     },
   };
 };
