@@ -1,3 +1,26 @@
+# Document of Stripe Element WebComponent
+
+## Development
+
+### Start
+
+```bash
+% cp .env.example .env
+% [vim|code|etc..] .env
+-> Edit .env file to set several secret or tokens
+
+% npm run dev
+```
+
+### Build and test
+
+```bash
+% npm run build
+% npm run start
+```
+
+
+# APPENDIX: Readme of Next.js
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
