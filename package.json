@@ -17,6 +17,7 @@
     "graphql-request": "^3.5.0",
     "gray-matter": "^4.0.3",
     "grob": "^1.0.0",
+    "highlight.js": "^11.2.0",
     "ionicons": "^5.5.3",
     "next": "11.1.2",
     "react": "17.0.2",

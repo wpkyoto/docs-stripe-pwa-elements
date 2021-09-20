@@ -30,8 +30,10 @@ import { home } from "ionicons/icons";
 import Link from "next/link";
 import { IonButtons } from "../components/Ionic/IonButtons";
 import { IonButton } from "../components/Ionic/IonButton";
+import { useHighlightJS } from "../libs/highlight";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useHighlightJS()
   return (
     <IonApp>
       <IonContent id="app">
