@@ -55,6 +55,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
         params: file,
       };
     }),
-    fallback: "blocking",
+    fallback: false,
   };
 };

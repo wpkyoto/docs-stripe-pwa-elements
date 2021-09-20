@@ -58,7 +58,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
           slug: Array.isArray(slug) ? slug.join("/") : slug,
         },
       })),
-    fallback: "blocking",
+      fallback: false,
   };
 };
 
