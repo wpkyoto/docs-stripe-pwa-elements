@@ -20,10 +20,6 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
 ) => {
   return (
     <PageLayout title="Blog">
-      <Head>
-        <title>Bolgs</title>
-      </Head>
-
       <main className="ion-padding">
         {props.posts.map((post) => {
           return (

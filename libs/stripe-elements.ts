@@ -1,15 +1,12 @@
-
 import { useEffect } from "react";
 import {
-    applyPolyfills,
-    defineCustomElements,
-} from '@stripe-elements/stripe-elements/loader'
+  applyPolyfills,
+  defineCustomElements,
+} from "@stripe-elements/stripe-elements/loader";
 export const useStripeElementWebComponent = () => {
-    useEffect(() => {
-        applyPolyfills()
-        .then(() => {
-            defineCustomElements(window)
-        })
-    },[])
-
-}
+  useEffect(() => {
+    applyPolyfills().then(() => {
+      defineCustomElements(window);
+    });
+  }, []);
+};

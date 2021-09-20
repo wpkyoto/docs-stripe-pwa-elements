@@ -5,8 +5,8 @@ const ExampleHtmlTag: NextPage = () => {
   return (
     <PageLayout title="Example: HTML Tag">
       <pre>
-          <code>
-              {`
+        <code>
+          {`
     <stripe-element-modal open="true">
       <stripe-payment-sheet
         publishable-key="pk_test_xxxxx"
@@ -16,8 +16,8 @@ const ExampleHtmlTag: NextPage = () => {
       ></stripe-payment-sheet>
     </stripe-element-modal>
               `}
-          </code>
-      </pre> 
+        </code>
+      </pre>
     </PageLayout>
   );
 };

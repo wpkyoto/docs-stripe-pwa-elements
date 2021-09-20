@@ -16,12 +16,12 @@ import { IonButtons } from "../components/Ionic/IonButtons";
 import { IonButton } from "../components/Ionic/IonButton";
 import { useHighlightJS } from "../libs/highlight";
 import { useStripeElementWebComponent } from "../libs/stripe-elements";
-import '../libs/ionic';
+import "../libs/ionic";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useHighlightJS();
-  useStripeElementWebComponent()
+  useStripeElementWebComponent();
   return (
     <IonApp>
       <IonContent id="app">
@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               <IonToolbar>
                 <IonButtons slot="start">
                   <Link href="/" passHref>
-                    <IonButton>stripe-element</IonButton>
+                    <IonButton>stripe-elements</IonButton>
                   </Link>
                 </IonButtons>
               </IonToolbar>
