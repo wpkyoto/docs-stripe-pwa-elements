@@ -1,9 +1,9 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Link from "next/link";
-import { Octokit } from "@octokit/core";
 import { listStencilComponentReadmes } from "../../libs/github/listReadme";
 import { markdownToHtml } from "../../libs/markdown/converters";
 import { PageLayout } from "../../components/Layouts/PageLayout";
+import { getGitHubReadme } from "../../libs/github/getReadme";
 
 export const ReleasedComponentsPage: NextPage<
   InferGetStaticPropsType<typeof getStaticProps>
@@ -38,34 +38,10 @@ export const getStaticProps: GetStaticProps<{
   text: string;
 }> = async () => {
   const files = await listStencilComponentReadmes();
-  const client = new Octokit({
-    auth: process.env.GITHUB_ACCESS_TOKEN,
-  });
-  const data = await client.graphql<{
-    repository: {
-      object: {
-        text: string;
-      };
-    };
-  }>(
-    `
-        query($file: String!) {
-            repository(owner: "stripe-elements", name: "stripe-elements") {
-                object (expression: $file) {
-                    ... on Blob { 
-                        text
-                    }
-                }
-            }
-        }
-    `,
-    {
-      file: `main:readme.md`,
-    }
-  );
+  const { text } = await getGitHubReadme()
   return {
     props: {
-      text: await markdownToHtml(data.repository.object.text),
+      text: await markdownToHtml(text),
       files: files.map((file) => file.name),
     },
   };
