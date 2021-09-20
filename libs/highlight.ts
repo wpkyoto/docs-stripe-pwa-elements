@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import hljs from "highlight.js/lib/core";
 import "highlight.js/styles/atom-one-dark.css";
-const javascript = require("highlight.js/lib/languages/javascript");
+const javascript = require("../node_modules/highlight.js/lib/languages/javascript");
 hljs.registerLanguage("javascript", javascript);
 /*
 import javascript from "highlight.js/lib/languages/javascript";
