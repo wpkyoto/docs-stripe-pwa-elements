@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps<{
       notFound: true,
     };
   }
-  const {text} = await getGitHubReadme(`src/components/${name}/`)
+  const { text } = await getGitHubReadme(`src/components/${name}/`);
   return {
     props: {
       text: await markdownToHtml(text),

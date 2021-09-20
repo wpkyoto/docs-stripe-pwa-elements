@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps<{
   text: string;
 }> = async () => {
   const files = await listStencilComponentReadmes();
-  const { text } = await getGitHubReadme()
+  const { text } = await getGitHubReadme();
   return {
     props: {
       text: await markdownToHtml(text),

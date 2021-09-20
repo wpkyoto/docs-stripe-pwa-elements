@@ -29,7 +29,6 @@ const Home: NextPage = (props) => {
 
 export default Home;
 
-
 export const getStaticProps: GetStaticProps = async () => {
   const postSlugs = getAllPosts();
   const posts = await Promise.all(

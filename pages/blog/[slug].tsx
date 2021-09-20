@@ -1,11 +1,24 @@
-import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import type {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next";
 import Head from "next/head";
 import { markdownToHtml } from "../../libs/markdown/converters";
 import { BlogPost, getAllPosts, getPostBySlug } from "../../libs/markdownPosts";
 import { PageLayout } from "../../components/Layouts/PageLayout";
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from "../../components/Ionic/IonCards";
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+} from "../../components/Ionic/IonCards";
 
-const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({post}) => {
+const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  post,
+}) => {
   return (
     <PageLayout title={post.title}>
       <Head>
@@ -17,9 +30,11 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({post}) 
           <IonCardTitle>{post.title}</IonCardTitle>
         </IonCardHeader>
         <IonCardContent>
-          <div dangerouslySetInnerHTML={{
-            __html: post.content
-          }} />
+          <div
+            dangerouslySetInnerHTML={{
+              __html: post.content,
+            }}
+          />
         </IonCardContent>
       </IonCard>
     </PageLayout>
@@ -48,7 +63,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<{
-  post: BlogPost
+  post: BlogPost;
 }> = async ({ params }) => {
   if (!params || !params.slug) {
     return {
@@ -68,8 +83,8 @@ export const getStaticProps: GetStaticProps<{
       props: {
         post: {
           slug: Array.isArray(slug) ? slug.join("/") : slug,
-          date: Array.isArray(post.date) ? post.date[0]: post.date,
-          title: Array.isArray(post.title) ? post.title[0]: post.title,
+          date: Array.isArray(post.date) ? post.date[0] : post.date,
+          title: Array.isArray(post.title) ? post.title[0] : post.title,
           content: await markdownToHtml(post.content as any),
         },
       },

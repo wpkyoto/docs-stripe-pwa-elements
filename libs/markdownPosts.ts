@@ -61,7 +61,7 @@ export const getPostBySlug = (
  * @returns
  * @see https://qiita.com/KZ-taran/items/5a460a41dca9d94d21cc
  */
- export const getBlogPosts = () => {
+export const getBlogPosts = () => {
   const entries = glob.sync(`${postDirPrefix}/blog/*.md`);
   return entries
     .map((file) => file.split(postDirPrefix).pop())
@@ -73,7 +73,7 @@ export type BlogPost = {
   slug: string;
   date: string;
   content: string;
-}
+};
 
 /**
  *
