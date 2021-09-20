@@ -50,7 +50,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2":
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.14.6":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
@@ -313,10 +313,26 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.0.6.tgz#023d72a5c4531b4ce204528971700a78a85a0c50"
   integrity sha512-Myxw//kzromB9yWgS8qYGuGVf91oBUUJpNvy5eM50sqvmKLbKjwLxohJnkWGTeeI9v9IBMtPLxz5Gc60FIfvCA==
 
-"@stencil/core@^2.4.0", "@stencil/core@^2.5.0":
+"@stencil/core@^2.0.1", "@stencil/core@^2.4.0", "@stencil/core@^2.5.0":
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.8.1.tgz#21b15c115d9a5e2f56379774fcbd9bc947bf336f"
   integrity sha512-iv9J6oLO/lv7/aO45M05yw3pp1J7olY400vlOZgdMVs3s5zHfalY1ZPYM0KyqU4+7DZuadKYbd0aQZ/g2PInZw==
+
+"@stripe-elements/stripe-elements@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@stripe-elements/stripe-elements/-/stripe-elements-0.1.0.tgz#f7a76d29306aa4bf336a96f06dc6a863361ff4ce"
+  integrity sha512-bM3Yo/FIKPF8ehJt5blF7OsA3ONp5dF/zCjc6Upei87ceQ+RGOvJ+FcUqPem8RzBjTaKgyDaPY27Cvr2xNFpag==
+  dependencies:
+    "@stencil/core" "^2.0.1"
+    "@stripe/stripe-js" "^1.16.0"
+    i18next "^20.3.3"
+    i18next-browser-languagedetector "^6.1.2"
+    ionicons "^5.5.2"
+
+"@stripe/stripe-js@^1.16.0":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.17.1.tgz#afcb7e86d0b05d1a7af53af89111abd2e8d437ae"
+  integrity sha512-c9MyDvdi5Xou0j0JPNy86NebtTDfh9o62Ifuzx6GSm2YO0oedBpy51WSyOue2L8Fb+mqESS5gd6mGVEIPUnXsA==
 
 "@types/capitalize@^2.0.0":
   version "2.0.0"
@@ -2124,6 +2140,20 @@ https-browserify@1.0.0, https-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
+i18next-browser-languagedetector@^6.1.2:
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-6.1.2.tgz#68565a28b929cbc98ab6a56826ef2faf0e927ff8"
+  integrity sha512-YDzIGHhMRvr7M+c8B3EQUKyiMBhfqox4o1qkFvt4QXuu5V2cxf74+NCr+VEkUuU0y+RwcupA238eeolW1Yn80g==
+  dependencies:
+    "@babel/runtime" "^7.14.6"
+
+i18next@^20.3.3:
+  version "20.6.1"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-20.6.1.tgz#535e5f6e5baeb685c7d25df70db63bf3cc0aa345"
+  integrity sha512-yCMYTMEJ9ihCwEQQ3phLo7I/Pwycf8uAx+sRHwwk5U9Aui/IZYgQRyMqXafQOw5QQ7DM1Z+WyEXWIqSuJHhG2A==
+  dependencies:
+    "@babel/runtime" "^7.12.0"
+
 iconv-lite@0.4.24:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -2205,7 +2235,7 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-ionicons@^5.1.2, ionicons@^5.5.3:
+ionicons@^5.1.2, ionicons@^5.5.2, ionicons@^5.5.3:
   version "5.5.3"
   resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-5.5.3.tgz#33cfc4c8a590ac45895f2b10309ef4586ed244c1"
   integrity sha512-L71djrMi8pAad66tpwdnO1vwcyluCFvehzxU1PpH1k/HpYBZhZ5IaYhqXipmqUvu5aEbd4cbRguYyI5Fd4bxTw==

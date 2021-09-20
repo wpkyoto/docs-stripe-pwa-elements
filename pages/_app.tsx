@@ -1,21 +1,5 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { IonContent } from "../components/Ionic/IonContent";
-/* Core CSS required for Ionic components to work properly */
-import "@ionic/core/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
-import "@ionic/core/css/normalize.css";
-import "@ionic/core/css/structure.css";
-import "@ionic/core/css/typography.css";
-
-/* Optional CSS utils that can be commented out */
-import "@ionic/core/css/padding.css";
-import "@ionic/core/css/float-elements.css";
-import "@ionic/core/css/text-alignment.css";
-import "@ionic/core/css/text-transformation.css";
-import "@ionic/core/css/flex-utils.css";
-import "@ionic/core/css/display.css";
 import { IonApp } from "../components/Ionic/IonApp";
 import { IonSplitPane } from "../components/Ionic/IonSplitPane";
 import { IonPage } from "../components/Ionic/IonPage";
@@ -31,9 +15,13 @@ import Link from "next/link";
 import { IonButtons } from "../components/Ionic/IonButtons";
 import { IonButton } from "../components/Ionic/IonButton";
 import { useHighlightJS } from "../libs/highlight";
+import { useStripeElementWebComponent } from "../libs/stripe-elements";
+import '../libs/ionic';
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useHighlightJS();
+  useStripeElementWebComponent()
   return (
     <IonApp>
       <IonContent id="app">

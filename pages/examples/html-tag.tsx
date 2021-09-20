@@ -17,7 +17,7 @@ const ExampleHtmlTag: NextPage = () => {
     </stripe-element-modal>
               `}
           </code>
-      </pre>
+      </pre> 
     </PageLayout>
   );
 };
