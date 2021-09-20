@@ -38,9 +38,22 @@ export default Home
 
 export const getStaticPaths:GetStaticPaths = async () => {
     const slugs = getAllPosts()
-
+    console.log(slugs
+        .filter(slug => {
+            if (!Array.isArray(slug)) {
+               return false 
+            }
+            return slug[0] === 'blog'
+        }))
     return {
-        paths: slugs.map(slug => ({
+        paths: slugs
+        .filter(slug => {
+            if (!Array.isArray(slug)) {
+               return false 
+            }
+            return slug[0] === 'blog'
+        })
+        .map(slug => ({
             params: {
                 slug: Array.isArray(slug) ? slug.join('/') :slug
             }
@@ -50,15 +63,32 @@ export const getStaticPaths:GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
-    console.log({params})
-    // @ts-expect-error
-    const post = getPostBySlug('blog/' + params.slug, ['date', 'title', 'content'])
-  return {
-    props: {
-        post: {
-            ...post,
-            content: await markdownToHtml(post.content as any)
-          }
+    if (!params || !params.slug) {
+        return {
+            notFound: true
+        }
     }
-  }
+    const slug = (() => {
+        if (Array.isArray(params.slug)) return params.slug.join('/')
+        if (!/^blog\//.test(params.slug)) {
+            return `blog/${params.slug}`
+        } 
+        return params.slug
+    })()
+    try {
+        const post = getPostBySlug(slug, ['date', 'title', 'content'])
+        return {
+            props: {
+                post: {
+                    ...post,
+                    content: await markdownToHtml(post.content as any)
+                }
+            }
+        }
+    } catch(e) {
+        console.log(e)
+        return {
+            notFound: true
+        }
+    }
 }

@@ -19,7 +19,7 @@ const Home: NextPage = (props) => {
       <main className={styles.main}>
         {(props as any).posts.map((post: any) => {
           return (
-            <Link href={`/${post.slug}`} passHref>
+            <Link href={`/${post.slug}`} passHref key={post.title}>
               <a>
                 {post.title}
               </a>

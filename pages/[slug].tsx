@@ -46,9 +46,11 @@ export const getStaticPaths:GetStaticPaths = async () => {
     const slugs = getAllPosts()
 
     return {
-        paths: slugs.map(slug => ({
+        paths: slugs
+        .filter(slug => !Array.isArray(slug))
+        .map(slug => ({
             params: {
-                slug: Array.isArray(slug) ? slug.join('/') :slug
+                slug: Array.isArray(slug) ? slug[slug.length - 1] :slug
             }
         })),
         fallback: 'blocking'
@@ -56,15 +58,24 @@ export const getStaticPaths:GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
-    console.log({params})
-    // @ts-expect-error
+    if (!params || !params.slug) {
+        return {
+            notFound: true
+        }
+    }
+    try {
     const post = getPostBySlug(params.slug, ['date', 'title', 'content'])
-  return {
-    props: {
-        post: {
-            ...post,
-            content: await markdownToHtml(post.content as any)
-          }
+    return {
+      props: {
+          post: {
+              ...post,
+              content: await markdownToHtml(post.content as any)
+            }
+      }
+    }
+  } catch (e) {
+    return {
+      notFound: true
     }
   }
 }
