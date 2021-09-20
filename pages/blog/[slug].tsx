@@ -53,11 +53,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
         }
         return slug[0] === "blog";
       })
-      .map((slug) => ({
-        params: {
-          slug: Array.isArray(slug) ? slug.join("/") : slug,
-        },
-      })),
+      .map((slugs) => {
+        const slug = Array.isArray(slugs) ? slugs.filter(d => d !== 'blog').join("/") : slugs
+        return {
+          params: {
+            slug: slug,
+          },
+        }
+      }),
       fallback: false,
   };
 };
