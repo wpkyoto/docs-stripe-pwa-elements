@@ -48,6 +48,12 @@ function MyApp({ Component, pageProps }: AppProps) {
             </IonHeader>
             <IonContent>
               <IonList>
+                <Link href="/" passHref>
+                  <IonItem>
+                    <IonIcon icon={home} slot="start" />
+                    <IonLabel>Home</IonLabel>
+                  </IonItem>
+                </Link>
                 <Link href="/components" passHref>
                   <IonItem>
                     <IonIcon icon={home} slot="start" />

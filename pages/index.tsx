@@ -1,10 +1,9 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { remark } from "remark";
-import html from "remark-html";
 import { getAllPosts, getPostBySlug } from "../libs/markdownPosts";
 import { PageLayout } from "../components/Layouts/PageLayout";
+import { markdownToHtml } from "../libs/markdown/converters";
 
 const Home: NextPage = (props) => {
   return (
@@ -30,10 +29,6 @@ const Home: NextPage = (props) => {
 
 export default Home;
 
-const markdownToHtml = async (markdown: string) => {
-  const result = await remark().use(html).process(markdown);
-  return result.toString();
-};
 
 export const getStaticProps: GetStaticProps = async () => {
   const postSlugs = getAllPosts();
