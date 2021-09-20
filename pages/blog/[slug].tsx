@@ -1,8 +1,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import {remark} from 'remark'
-import html from 'remark-html'
+import { markdownToHtml } from '../../libs/markdown/converters'
 import { getAllPosts, getPostBySlug } from '../../libs/markdownPosts'
 import styles from '../../styles/Home.module.css'
 
@@ -36,11 +35,6 @@ const Home: NextPage = (props) => {
 }
 
 export default Home
-
-const markdownToHtml = async (markdown: string) => {
-  const result = await remark().use(html).process(markdown)
-  return result.toString()
-}
 
 export const getStaticPaths:GetStaticPaths = async () => {
     const slugs = getAllPosts()
