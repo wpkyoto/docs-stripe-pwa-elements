@@ -14,7 +14,7 @@
     "@ionic/core": "^5.8.0",
     "@ionic/react": "^5.8.0",
     "@octokit/core": "^3.5.1",
-    "@stripe-elements/stripe-elements": "^0.1.0",
+    "@stripe-elements/stripe-elements": "^1.0.0",
     "capitalize": "^2.0.3",
     "graphql": "^15.5.3",
     "graphql-request": "^3.5.0",
@@ -27,7 +27,8 @@
     "react-dom": "17.0.2",
     "remark": "^14.0.1",
     "remark-gfm": "^2.0.0",
-    "remark-html": "^14.0.1"
+    "remark-html": "^14.0.1",
+    "stripe": "^8.176.0"
   },
   "devDependencies": {
     "@types/capitalize": "^2.0.0",
