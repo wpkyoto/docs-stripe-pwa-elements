@@ -318,10 +318,10 @@
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.8.1.tgz#21b15c115d9a5e2f56379774fcbd9bc947bf336f"
   integrity sha512-iv9J6oLO/lv7/aO45M05yw3pp1J7olY400vlOZgdMVs3s5zHfalY1ZPYM0KyqU4+7DZuadKYbd0aQZ/g2PInZw==
 
-"@stripe-elements/stripe-elements@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@stripe-elements/stripe-elements/-/stripe-elements-0.1.0.tgz#f7a76d29306aa4bf336a96f06dc6a863361ff4ce"
-  integrity sha512-bM3Yo/FIKPF8ehJt5blF7OsA3ONp5dF/zCjc6Upei87ceQ+RGOvJ+FcUqPem8RzBjTaKgyDaPY27Cvr2xNFpag==
+"@stripe-elements/stripe-elements@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@stripe-elements/stripe-elements/-/stripe-elements-1.0.0.tgz#e30155a17577e311ff1d0de7df5e8908dccaaee7"
+  integrity sha512-5AFgM1zXT/sklIVmpWM47EsYIgclm5eECSITZPzEPObCz5092PyWJ1/cmdvw61U5GVBdRJ04mbyfHA6kl1gRkw==
   dependencies:
     "@stencil/core" "^2.0.1"
     "@stripe/stripe-js" "^1.16.0"
