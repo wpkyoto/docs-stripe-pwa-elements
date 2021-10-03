@@ -47,7 +47,7 @@ const ExampleHtmlTag: NextPage = () => {
     <stripe-sheet open="true">
       <stripe-payment
         publishable-key="pk_test_xxxxx"
-        show-label="false"
+        zip="false"
         intent-client-secret="pi-xxxxxx"
       ></stripe-payment>
     </stripe-sheet>
