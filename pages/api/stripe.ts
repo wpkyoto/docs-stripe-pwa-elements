@@ -1,7 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
+import Cors from 'cors'
 
+// corsミドルウェアの初期化
+const cors = Cors({
+  methods: ['GET', 'HEAD', 'OPTIONS', 'POST'],
+})
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2020-08-27",
 });
@@ -99,6 +104,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await (() => {
+    return new Promise((resolve, reject) => {
+      cors(req, res, result => {
+        if (result instanceof Error) {
+          console.log(result)
+          return reject(result)
+        }
+        return resolve(result)
+      })
+    })
+  })()
+  
   try {
     if (req.method === "POST") {
       switch (req.body.type) {
